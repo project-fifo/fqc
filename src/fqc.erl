@@ -1,5 +1,7 @@
 -module(fqc).
 
+-include_lib("eqc/include/eqc.hrl").
+
 -export([not_empty/1, maybe_oneof/2, non_blank_string/0]).
 
 not_empty(G) ->

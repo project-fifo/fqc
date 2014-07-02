@@ -31,16 +31,15 @@
 -define(OUT(P),
         on_output(fun
                       (".", []) ->
-                          io:fwrite(user, <<"\e[0;32m*\e[0m">>, []);
-                     ("x", []) ->
-                          io:format(user, <<"\e[0;33mx\e[0m">>, []);
-                     ("Failed! ", []) ->
-                          io:format(user, <<"\e[0;31mFailed! \e[0m">>, []);
-                     (S, F) ->
-                          io:format(user, S, F)
-                  end, P)).
+                         io:fwrite(user, <<"\e[0;32m*\e[0m">>, []);
+                      ("x", []) ->
+                         io:format(user, <<"\e[0;33mx\e[0m">>, []);
+                      ("Failed! ", []) ->
+                         io:format(user, <<"\e[0;31mFailed! \e[0m">>, []);
+                      (S, F) ->
+                         io:format(user, S, F)
+                 end, P)).
 -endif.
-
 
 -ifndef(EQC_NUM_TESTS).
 
@@ -57,7 +56,7 @@
 -endif. % EQC_NUM_TESTS
 
 -ifndef(EQC_EUNIT_TIMEUT).
--define(EQC_EUNIT_TIMEUT, (?EQC_NUM_TESTS/5)).
+-define(EQC_EUNIT_TIMEUT, (?EQC_NUM_TESTS div 5)).`
 -endif.
 
 -ifndef(EQC_SETUP).
@@ -78,5 +77,5 @@ run_test_() ->
       fun cleanup/1,
       [{"Running " ++ N ++ " propperty test",
         {timeout, ?EQC_EUNIT_TIMEUT, ?_assert(quickcheck(numtests(?EQC_NUM_TESTS,  ?OUT(?MODULE:A()))))}}
-     || {N, A} <- E2]}].
+       || {N, A} <- E2]}].
 -endif.
