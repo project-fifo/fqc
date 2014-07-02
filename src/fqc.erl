@@ -1,5 +1,8 @@
 -module(fqc).
 
+
+-ifdef(EQC).
+
 -include_lib("eqc/include/eqc.hrl").
 
 -export([not_empty/1, maybe_oneof/2, non_blank_string/0, lower_char/0]).
@@ -18,3 +21,5 @@ lower_char() ->
 
 maybe_oneof(L, T) ->
     ?LET(E, ?SUCHTHAT(E, T, not lists:member(E, L)), oneof([E | L])).
+
+-endif.

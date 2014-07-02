@@ -20,6 +20,9 @@
 %% EQC_NUM_TESTS and EQC_EUNIT_TIMEUT can be -defined in the file including this
 %% if not they'll defualt to 500 tests and 60s
 
+-ifdef(TEST).
+-ifdef(EQC).
+
 -include_lib("eqc/include/eqc.hrl").
 -include_lib("eunit/include/eunit.hrl").
 
@@ -79,3 +82,6 @@ run_test_() ->
         {timeout, ?EQC_EUNIT_TIMEUT, ?_assert(quickcheck(numtests(?EQC_NUM_TESTS,  ?OUT(?MODULE:A()))))}}
        || {N, A} <- E2]}].
 -endif.
+
+-endif. % EQC
+-endif. % Test
