@@ -23,7 +23,7 @@
 -include_lib("eqc/include/eqc.hrl").
 -include_lib("eunit/include/eunit.hrl").
 
--import(fqc, [not_empty/1, maybe_oneof/2, non_blank_string/0]).
+-import(fqc, [not_empty/1, maybe_oneof/2, non_blank_string/0, lower_char/0]).
 
 -ifdef(EQC_CI).
 -define(OUT(P),  on_output(fun(S,F) -> io:fwrite(user, S, F) end, P)).
