@@ -1,0 +1,12 @@
+case code:lib_dir(eqc, include) of
+    {error,bad_name} ->
+        CONFIG;
+    _  ->
+        EQCDefine = [{d, 'HAS_EQC'}],
+        case lists:keysearch(erl_opts, 1, CONFIG) of
+            {value, {erl_opts, Opts}} ->
+                lists:keyreplace(erl_opts,1,CONFIG,{erl_opts,Opts++EQCDefine});
+            false ->
+                CONFIG ++ [{erl_opts, EQCDefine}]
+        end
+end.

@@ -1,7 +1,7 @@
 -module(fqc).
 
 
--ifdef(EQC).
+-ifdef(HAS_EQC).
 
 -include_lib("eqc/include/eqc.hrl").
 
