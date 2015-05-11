@@ -45,6 +45,21 @@
                  end, P)).
 -endif.
 
+-ifdef(GROWL).
+-ifndef(EQC_CI).
+-define(NOTIFY(P),
+        on_test(fun(_, true) ->
+                        ok;
+                   (_, false) ->
+                        fqc:growl("EQC test failed!")
+                end, P)).
+-else.  %% EQC_CI
+-define(NOTIFY(P), P).
+-endif. %% EQC_CI
+-else.  %% GROWL
+-define(NOTIFY(P), P).
+-endif. %% GROWL
+
 -ifndef(EQC_NUM_TESTS).
 
 -ifdef(EQC_LONG_TESTS).
@@ -69,7 +84,9 @@ run_test_() ->
     E1 = [{atom_to_list(N), N} || {N, 0} <- E],
     E2 = [{N, A} || {"prop_" ++ N, A} <- E1],
     [{"Running " ++ N ++ " propperty test",
-      {timeout, ?EQC_EUNIT_TIMEUT, ?_assert(quickcheck(numtests(?EQC_NUM_TESTS,  ?OUT(?MODULE:A()))))}}
+      {timeout, ?EQC_EUNIT_TIMEUT,
+       ?_assert(quickcheck(numtests(?EQC_NUM_TESTS,
+                                    ?GROWL(?OUT(?MODULE:A())))))}}
      || {N, A} <- E2].
 -else.
 run_test_() ->
@@ -80,7 +97,9 @@ run_test_() ->
       fun setup/0,
       fun cleanup/1,
       [{"Running " ++ N ++ " propperty test",
-        {timeout, ?EQC_EUNIT_TIMEUT, ?_assert(quickcheck(numtests(?EQC_NUM_TESTS,  ?OUT(?MODULE:A()))))}}
+        {timeout, ?EQC_EUNIT_TIMEUT,
+         ?_assert(quickcheck(numtests(?EQC_NUM_TESTS,
+                                      ?GROWL(?OUT(?MODULE:A()))))})}
        || {N, A} <- E2]}].
 -endif.
 

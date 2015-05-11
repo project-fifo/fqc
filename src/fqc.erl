@@ -6,7 +6,7 @@
 -include_lib("eqc/include/eqc.hrl").
 
 -export([not_empty/1, maybe_oneof/2, non_blank_string/0, lower_char/0,
-         pos_integer/0, non_neg_integer/0]).
+         pos_integer/0, non_neg_integer/0, growl/1]).
 
 not_empty(G) ->
     ?SUCHTHAT(X, G, X /= [] andalso X /= <<>>).
@@ -28,5 +28,8 @@ pos_integer() ->
 
 non_neg_integer() ->
     ?SUCHTHAT(X, int(), X > 0).
+
+growl(Msg) ->
+    os:cmd(["growlnotify -n eqc -m '", Msg, "'"]).
 
 -endif.
