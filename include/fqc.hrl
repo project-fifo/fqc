@@ -86,7 +86,7 @@ run_test_() ->
     [{"Running " ++ N ++ " propperty test",
       {timeout, ?EQC_EUNIT_TIMEUT,
        ?_assert(quickcheck(numtests(?EQC_NUM_TESTS,
-                                    ?GROWL(?OUT(?MODULE:A())))))}}
+                                    ?NOTIFY(?OUT(?MODULE:A())))))}}
      || {N, A} <- E2].
 -else.
 run_test_() ->
@@ -99,7 +99,7 @@ run_test_() ->
       [{"Running " ++ N ++ " propperty test",
         {timeout, ?EQC_EUNIT_TIMEUT,
          ?_assert(quickcheck(numtests(?EQC_NUM_TESTS,
-                                      ?GROWL(?OUT(?MODULE:A()))))})}
+                                      ?NOTIFY(?OUT(?MODULE:A()))))})}
        || {N, A} <- E2]}].
 -endif.
 
