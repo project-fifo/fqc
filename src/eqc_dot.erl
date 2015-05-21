@@ -2,9 +2,7 @@
 
 -export([example_data/0, to_dot/1, to_dot/2, find_path/2]).
 
--define(DATA, [{init,{{state,[],[],[],[],[],[],[],[],#{},
-                       #{user1 => {user,user1,undefined,[]},
-                         user2 => {user,user2,undefined,[]}},
+-define(DATA, [{init,{{state,[],[],[],[],[],[],[],[]},
                        {var,admin}},
                       [{blocked_calls,[]},
                        {fresh_id,1},
