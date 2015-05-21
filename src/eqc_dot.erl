@@ -9,7 +9,7 @@
                        {workers,[]},
                        {command_timeout,{var,command_timeout}},
                        {async_timeout,{var,async_timeout}},
-                       {meta_cmd_stack,[]}]}},
+                       {meta_cmd_stack,[]}]},
                {set,{var,1},
                 {call,wiggle_eqc,connect,
                  [user1,"http://192.168.1.41"],
