@@ -1,8 +1,11 @@
 {application, fqc,
  [
   {description, "FiFo EQC helper"},
-  {vsn, "0.1.3"},
+  {vsn, "0.1.4"},
   {registered, []},
   {applications, []},
-  {env, []}
+  {env, []},
+  {contributors, ["Heinz N. Gies"]},
+  {licenses, ["MIT"]},
+  {links, [{"Github", "https://github.com/project-fifo/fqc"}]}
  ]}.
